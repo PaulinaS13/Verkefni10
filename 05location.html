@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="is">
+
+  <!doctype html>
+  <html lang="is">
+    <head>
+      <meta charset="utf-8">
+      <title>Location</title>
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""/>
+      <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""></script>
+    </head>
+    <body>
+      <div id="map" style="width: 60%; height: 80vh;"></div>
+      <script>
+        /* eslint-disable no-undef */
+        let map;
+  
+        async function success(pos) {
+          console.log(pos);
+  
+          map.setView([pos.coords.latitude, pos.coords.longitude], 12);
+        }
+  
+        function error(err) {
+          console.log('err', err);
+        }
+  
+        async function main() {
+          const options = {
+            center: screenLeft,
+            zoom: 1,
+          };
+  
+          map = L.map(document.querySelector('#map'), options);
+  
+          // Bætum við "tiles" frá OSM sem eru open source. Gætum líka
+          // notað frá Google, mapbox eða fleirum en þyrftum þá aðgang
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+          }).addTo(map);
+  
+          navigator.geolocation.getCurrentPosition(success, error);
+        }
+        main();
+      </script>
+    
+  
+    
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Location</title>
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href= "local.css">
+        <!-- fontawesome cdn -->
+        <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+    
+    
+     
+        <div class="container">
+            <i class="fa-solid fa-location-dot"></i>
+            <div id="location_details"></div>
+            <button>Detect Your Location</button>
+        </div>
+  
+        map.MapProvider = GMapProviders.GoogleMap;
+        <!-- JavaScript -->
+        <script src= "main.js"></script>
+
+    </body>
+</html>

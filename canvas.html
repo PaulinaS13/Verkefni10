@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="is">
+  <head>
+    <meta charset="utf-8">
+    <title>canvas</title>
+  </head>
+
+  <body>
+   <br></br>
+    <canvas width="500" height="500"></canvas>
+    <script>
+      
+    const canvas = document.querySelector('canvas');
+    const context = canvas.getContext('2d');
+    
+    context.fillStyle = 'yellow';
+    context.fillRect(0, 0, 500, 500);
+    context.fillStyle = 'green';
+    context.fillRect(300, 250, 150, 150);
+
+    context.beginPath();
+    context.moveTo(180, 500);
+    context.lineTo(110, 170);
+    context.lineTo(190, 170);
+    context.fill();
+    </script>
+  </body>
+</html>
